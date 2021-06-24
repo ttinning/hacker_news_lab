@@ -1,36 +1,42 @@
 import { useState, useEffect } from "react";
 
 const NewsContainer = () => {
-    const [news, setNews] = useState([])
-    const [newsId, setNewsId] = useState([])
+    const [articles, setArticles] = useState([])
+    const [articlesId, setArticlesId] = useState([])
+    const [selectedArticle, setSelectedArticle] = useState(null)
 
 
     useEffect(() => {
-        getNewsId();
+        getArticlesId();
     }, []);
 
     useEffect(() => {
-        getNews();
-    }, [newsId])
+        getArticles();
+    }, [articlesId])
 
-    const getNewsId = function() {
+    const getArticlesId = function() {
         fetch ('https://hacker-news.firebaseio.com/v0/topstories.json')
             .then(res => res.json())
-            .then(newsId => setNewsId(newsId.slice(0, 10)))
-        console.log(setNewsId)
+            .then(articlesId => setArticlesId(articlesId.slice(0, 10)))
+        console.log(setArticlesId)
     }
 
-    const getNews = function(){
-        const articlePromises = newsId.map((id, index) => {
+    const getArticles = function(){
+        const articlePromises = articlesId.map((id, index) => {
             return fetch (`https://hacker-news.firebaseio.com/v0/item/${id}.json `)
                 .then(res => res.json())
         })
-        Promise.all(articlePromises).then(articles => setNews(articles))
+        Promise.all(articlePromises).then(articles => setArticles(articles))
+    }
+
+    const onArticleSelected = function(articles){
+        setSelectedArticle(articles)
     }
 
     return(
         <div>
-            {newsId.length},
+            {articlesId.length},
+            <NewsSelect articles={articles} onArticleSelected={onArticleSelected}/>
         </div>
     )
 
