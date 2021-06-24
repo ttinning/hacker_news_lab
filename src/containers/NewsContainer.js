@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ArticleSelector from "../components/ArticleSelect";
 
 const NewsContainer = () => {
     const [articles, setArticles] = useState([])
@@ -36,7 +37,7 @@ const NewsContainer = () => {
     return(
         <div>
             {articlesId.length},
-            <NewsSelect articles={articles} onArticleSelected={onArticleSelected}/>
+            <ArticleSelector articles={articles} onArticleSelected={onArticleSelected}/>
         </div>
     )
 
