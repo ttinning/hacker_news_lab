@@ -1,6 +1,6 @@
 const ArticleSelector = ({articles, onArticleSelected}) => {
 
-    const handleChange = function(evt) {
+    const handleChangeArticle = function(evt) {
         const chosenArticle = articles[evt.target.value];
         onArticleSelected(chosenArticle);
     }
@@ -10,7 +10,7 @@ const ArticleSelector = ({articles, onArticleSelected}) => {
     })
 
     return (
-        <select defaultValue="" onChange={handleChange}>
+        <select defaultValue="" onChange={handleChangeArticle}>
             <option value="">Choose an Article</option>
             {articleOptions}
         </select>
