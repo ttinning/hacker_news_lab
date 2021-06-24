@@ -1,8 +1,12 @@
 import './App.css';
+import NewsContainer from './containers/NewsContainer';
 
 function App() {
   return (
-    <h1>I am our App</h1>
+    <div>
+    <h1>Hacker News</h1>
+    <NewsContainer/>
+    </div>
   );
 }
 
